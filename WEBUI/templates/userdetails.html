@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>User Details - A&amp;E Self Service</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="http://localhost/assets/img/favicon.png" rel="icon">
+  <link href="http://localhost/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="http://localhost/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="http://localhost/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="http://localhost/assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Medilab
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+</head>
+<body>
+    <h1 class="align-content-center">Please fill in the following details</h1>
+    <form action="/userdetails" method="post" class="php-email-form">
+        <label for="full_name">Full Name:</label>
+        <input type="text" id="full_name" name="full_name" class="form-control" required><br>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" class="form-control" required><br>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" class="form-control" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+
+        <div id="pregnant-section" style="display: none;">
+            <label for="pregnant">Are you pregnant?</label>
+            <input type="checkbox" id="pregnant" name="pregnant" class="form-check"><br>
+        </div>
+
+        <button class="btn-get-started" type="submit">Continue</button>
+    </form>
+
+    <script>
+        const sexSelect = document.getElementById('sex');
+        const pregnantSection = document.getElementById('pregnant-section');
+
+        sexSelect.addEventListener('change', function() {
+            if (this.value === 'female') {
+                pregnantSection.style.display = 'block';
+            } else {
+                pregnantSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

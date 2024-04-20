@@ -1,0 +1,4 @@
+0 Cuts - Minor
+1 Cuts - Major
+2 Bruse - Minor
+3 Bruse - Major

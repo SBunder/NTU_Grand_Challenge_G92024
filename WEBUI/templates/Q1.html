@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why are you here?</title>
+
+</head>
+<body>
+    <h1>Why are you here?</h1>
+    <div id="buttons-container">
+        <button onclick="sendData('Chest pain')">Chest pain</button>
+        <button onclick="sendData('Difficulty to breath')">Difficulty to breath</button>
+        <button onclick="sendData('Seizure')">Seizure</button>
+        <button onclick="sendData('Weakness')">Weakness</button>
+        <button onclick="sendData('Dizziness')">Dizziness</button>
+        <button onclick="sendData('Fever')">Fever</button>
+        <button onclick="sendData('Injury')">Injury</button>
+        <button onclick="sendData('Pain')">Pain</button>
+        <button onclick="sendData('Bleeding')">Bleeding</button>
+        <button onclick="sendData('Urinary problems')">Urinary problems</button>
+        <button onclick="sendData('Eye/Ear Problems')">Eye/Ear Problems</button>
+        <button onclick="sendData('Nausea/vomiting/Diarrhoea')">Nausea/vomiting/Diarrhoea</button>
+        <button onclick="sendData('Overdose')">Overdose</button>
+        <button onclick="sendData('Menstrual Issues')">Menstrual Issues</button>
+        <button onclick="sendData('Sexual Health')">Sexual Health</button>
+		<button onclick="sendData('Chest pain')">Diabetes - Blood Sugar levels</button>
+        <button onclick="sendData('Difficulty to breath')">Difficulty to breath</button>
+        <button onclick="sendData('Seizure')">Seizure</button>
+        <button onclick="sendData('Weakness')">Weakness</button>
+        <button onclick="sendData('Dizziness')">Dizziness</button>
+        <button onclick="sendData('Fever')">Fever</button>
+        <button onclick="sendData('Injury')">Injury</button>
+        <button onclick="sendData('Pain')">Pain</button>
+        <button onclick="sendData('Bleeding')">Bleeding</button>
+        <button onclick="sendData('Urinary problems')">Urinary problems</button>
+        <button onclick="sendData('Eye/Ear Problems')">Eye/Ear Problems</button>
+        <button onclick="sendData('Nausea/vomiting/Diarrhoea')">Nausea/vomiting/Diarrhoea</button>
+        <button onclick="sendData('Overdose')">Overdose</button>
+        <button onclick="sendData('Menstrual Issues')">Menstrual Issues</button>
+        <button onclick="sendData('Sexual Health')">Sexual Health</button>
+		<button onclick="sendData('Diabetes')">Diabetes - Blood Sugar Level</button>
+		<button onclick="sendData('Blood Pressure')">Blood Pressure Problems</button>
+		<button onclick="sendData('High Temprature')">High Temperature</button>
+		<button onclick="sendData('Sleep')">Sleep/Insomnia</button>
+		<button onclick="sendData('Allergy')">Allergic Reaction</button>
+		<button onclick="sendData('Heart')">Heart Problems</button>
+		<button onclick="sendData('CandS')">Catheter and Stomas</button>
+		<button onclick="sendData('Burns')">Burns and Scalds</button>
+		<br>
+		<br>
+        <label for="other-input">Other:</label>
+    	<input type="text" id="other-input" name="other">
+    <button onclick="sendOtherData()">Submit</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        function sendData(data) {
+            socket.emit('Q1d', data);
+			window.location.href = '/Camera';
+            // Redirect immediately after emitting data
+            redirectToPage(data);
+        }
+
+        function sendOtherData() {
+            var otherInput = document.getElementById("other-input").value;
+            sendData(otherInput);
+        }
+
+        function redirectToPage(data) {
+            if (data === 'Chest pain') {
+                window.location.href = '/prating';
+            } else if (data === 'Difficulty to breath') {
+                window.location.href = '/prating';
+            }
+            // Add more conditions as needed
+            else {
+                 Redirect to a default page if no match found
+                window.location.href = '/default_page';
+            }
+        }
+
+        socket.on('Cam', function(data) {
+            // This part is optional if you still want to handle redirection based on 'Cam' event
+            if (data === 1) {
+                window.location.href = '/Camera';
+            } else if (data === 0) {
+                window.location.href = '/prating';
+            } else {
+                document.getElementById('status').innerText = 'Unknown status';
+            }
+        });
+    </script>
+</body>
+</html>

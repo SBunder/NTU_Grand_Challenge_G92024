@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Capture</title>
+</head>
+<body>
+    <div id="photo-section" >
+        <p>A photo is needed to analyze the issue.</p>
+        <p>Please present your injury to the camera.</p>
+        <button id="ready-button">I'm ready</button>
+        <div id="countdown"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script>
+        var socket = io("http://localhost:5000");
+
+        // Function to start the countdown timer
+        function startCountdown() {
+            var countdownElement = document.getElementById("countdown");
+            var count = 5;
+            var countdownInterval = setInterval(function() {
+                countdownElement.textContent = "Taking photo in " + count + " seconds...";
+                count--;
+                if (count < 0) {
+                    clearInterval(countdownInterval);
+                    socket.emit('take_photo');
+                }
+            }, 1000);
+        }
+
+        // Socket.IO event listener to handle taking the photo and processing the image
+        socket.on('photo_taken', function() {
+            document.getElementById("countdown").textContent = "Analyzing Image...";
+            setTimeout(function() {
+                socket.emit('process_image');
+            }, 5000);
+        });
+
+        // Socket.IO event listener to handle redirection after image processing is complete
+        socket.on('image_processed', function() {
+            window.location.href = "prating.html";
+        });
+
+        // Event listener for the "I'm ready" button
+        document.getElementById("ready-button").addEventListener("click", function() {
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
